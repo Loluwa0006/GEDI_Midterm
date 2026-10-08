@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BaseState : MonoBehaviour
@@ -10,7 +11,7 @@ public class BaseState : MonoBehaviour
         StateMachine = stateMachine;
         Entity = entity;
     }
-    public virtual void Enter()
+    public virtual void Enter(Dictionary<string, object> msg = null)
     {
 
     }

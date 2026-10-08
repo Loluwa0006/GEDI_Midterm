@@ -3,10 +3,12 @@ using System.Collections.Generic;
 
 public class EntityStateMachine : MonoBehaviour
 {
-    Dictionary<System.Type, BaseState> stateLookup = new();
+    Dictionary<string, BaseState> stateLookup = new();
 
     [SerializeField] BaseState currentState;
     [SerializeField] BaseEntity entityOwner;
+
+    public BaseState CurrentState { get { return currentState; }  }
     private void Start()
     {
 
@@ -20,21 +22,18 @@ public class EntityStateMachine : MonoBehaviour
         foreach (BaseState state in states)
         {
             state.Initialize(this, entityOwner);
-            stateLookup[state.GetType()] = state;
+            stateLookup[state.name] = state;
         }
         if (currentState == null) currentState = states[0];
 
         currentState.Enter();
     }
 
-    public void TransitionTo<T>() where T : BaseState
+    public void TransitionTo(string  name)
     {
-        if (!stateLookup.ContainsKey(typeof(T)))
-        {
-            Debug.LogWarning("Missing state of type " + typeof(T));
-        }
+      
         if (currentState != null) currentState.Exit();
-        currentState = stateLookup[typeof(T)];
+        currentState = stateLookup[name];
         currentState.Enter();
     }
 

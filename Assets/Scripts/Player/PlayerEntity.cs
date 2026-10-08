@@ -3,8 +3,18 @@ using UnityEngine;
 public class PlayerEntity : BaseEntity
 {
     [SerializeField] InputManager inputManager;
-    [SerializeField] Rigidbody2D rigidBody;
+    [SerializeField] GameObject Bubble;
 
-    public Rigidbody2D RigidBody { get { return rigidBody; } }
     public InputManager InputManager { get { return inputManager; } }
+
+    private void Update()
+    {
+        if (inputManager.WasBubblePressed())
+        {
+            var bubble = Instantiate(Bubble);
+            bubble.transform.position = transform.position;
+            Bubble.GetComponent<Rigidbody2D>().AddForce(new Vector2(inputManager.GetMovementDirection() * 20, 0));
+        }
+    }
+
 }

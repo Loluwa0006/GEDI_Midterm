@@ -19,4 +19,9 @@ public class InputManager : MonoBehaviour
     {
         return playerInput.actions["Jump"].IsPressed();
     }
+
+    public bool WasBubblePressed()
+    {
+        return playerInput.actions["Bubble"].WasPerformedThisFrame();
+    }
 }

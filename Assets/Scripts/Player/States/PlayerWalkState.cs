@@ -19,7 +19,7 @@ public class PlayerWalkState : PlayerBaseState
 
         if (!IsGrounded())
         {
-            StateMachine.TransitionTo<PlayerAirState>();
+            StateMachine.TransitionTo("PlayerAir");
         }
     }
 
