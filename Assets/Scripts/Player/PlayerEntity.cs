@@ -23,7 +23,7 @@ public class PlayerEntity : BaseEntity
         if (inputManager.WasBubblePressed())
         {
             var bubbles = bubble.GetNewObject();
-            bubble.transform.position = transform.position;
+            bubbles.transform.position = transform.position;
             Bubble.GetComponent<Rigidbody2D>().AddForce(new Vector2(inputManager.GetMovementDirection() * 20, 0));
         }
     }
